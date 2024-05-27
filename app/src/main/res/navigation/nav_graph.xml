@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/articles_frag">
+
+    <fragment
+        android:id="@+id/articles_frag"
+        android:name="com.thomas.topheadlines.presentation.HeadlineArticlesFragment"
+        android:label="Headline Articles"
+        tools:layout="@layout/headline_articles_fragment_layout">
+
+        <action
+            android:id="@+id/article_detail_action"
+            app:destination="@id/article_detail_frag"
+            app:popUpTo="@id/articles_frag"
+            app:popUpToInclusive="false" >
+        </action>
+
+        <action
+            android:id="@+id/article_error_action"
+            app:destination="@id/article_error_frag"
+            app:popUpTo="@id/articles_frag"
+            app:popUpToInclusive="true" >
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/article_detail_frag"
+        android:name="com.thomas.topheadlines.presentation.HeadlineArticlesDetailFragment"
+        android:label="Article Detail"
+        tools:layout="@layout/headline_articles_detail_fragment_layout">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/article_error_frag"
+        android:name="com.thomas.topheadlines.presentation.HeadlineErrorFragment"
+        android:label="Article Error"
+        tools:layout="@layout/headline_error_fragment_layout">
+
+        <action
+            android:id="@+id/article_retry_action"
+            app:destination="@id/articles_frag"
+            app:popUpToInclusive="true" >
+        </action>
+
+    </fragment>
+
+</navigation>

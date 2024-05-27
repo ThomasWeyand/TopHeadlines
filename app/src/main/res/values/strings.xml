@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Top Headlines</string>
+    <string name="bbc_news_provider">BBC News</string>
+    <string name="news_from_date">News from %s</string>
+    <string name="retry_text">retry</string>
+    <string name="try_again_title">Error loading information :(, please try again.</string>
+    <string name="read_full_article">read full article</string>
+</resources>
