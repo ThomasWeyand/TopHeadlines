@@ -18,8 +18,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        val newsApiKey: String? = System.getenv("PRIVATE_NEWS_API_KEY")
+        buildConfigField("String", "API_KEY", "\"${newsApiKey ?: ""}\"")
         buildConfigField("String", "BASE_URL", "\"https://newsapi.org/v2/\"")
-        buildConfigField("String", "API_KEY", "\"0aaab2de2fa94b2dbba46ed1e2a0ba97\"")
     }
 
     buildFeatures {
