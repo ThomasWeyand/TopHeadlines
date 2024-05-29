@@ -38,8 +38,8 @@ internal class HeadlineArticlesFragment : BaseFragment<HeadlineArticlesFragmentL
             it.supportActionBar?.title = getString(R.string.bbc_news_provider)
         }
         setupRecycler()
-        setupAdapterLoadingListeners()
         loadList()
+        setupAdapterLoadingListeners()
     }
 
     private fun setupRecycler() {
@@ -57,6 +57,8 @@ internal class HeadlineArticlesFragment : BaseFragment<HeadlineArticlesFragmentL
                 adapter.submitData(it)
             }
         }
+        if(adapter.itemCount == 0)
+            viewModel.getTopHeadlines()
     }
 
     private fun actionClick(article: SealedArticleResult.Article) {

@@ -15,16 +15,13 @@ import kotlinx.coroutines.launch
 
 internal class HeadlineArticlesViewModel(private val topHeadlinesUseCase: ITopHeadlinesUseCase) :
     ViewModel() {
-    init {
-        getTopHeadlines()
-    }
 
     private val _pagingArticle =
         MutableStateFlow<PagingData<SealedArticleResult>>(PagingData.empty())
     val pagingArticle: StateFlow<PagingData<SealedArticleResult>>
         get() = _pagingArticle.asStateFlow()
 
-    private fun getTopHeadlines() {
+    fun getTopHeadlines() {
         viewModelScope.launch(Dispatchers.IO) {
             topHeadlinesUseCase.paginateData()
                 .cachedIn(viewModelScope)
