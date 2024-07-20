@@ -12,5 +12,4 @@ interface HeadlineApi {
         @Query("page") page: Int,
         @Query("pageSize") pageSize: Int
     ): TopHeadlinesResultResponse
-
 }

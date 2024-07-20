@@ -1,9 +1,9 @@
 package com.thomas.topheadlines.domain.usecase
 
-import androidx.paging.PagingData
+import com.thomas.topheadlines.data.model.TopHeadlineRequest
 import com.thomas.topheadlines.domain.model.SealedArticleResult
-import kotlinx.coroutines.flow.Flow
+import com.thomas.topheadlines.domain.model.SealedResult
 
 interface ITopHeadlinesUseCase {
-    fun paginateData(): Flow<PagingData<SealedArticleResult>>
+    suspend fun fetchData(request: TopHeadlineRequest): SealedResult<List<SealedArticleResult>>
 }

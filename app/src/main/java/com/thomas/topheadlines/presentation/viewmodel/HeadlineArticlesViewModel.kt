@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.thomas.topheadlines.domain.model.SealedArticleResult
-import com.thomas.topheadlines.domain.usecase.ITopHeadlinesUseCase
+import com.thomas.topheadlines.presentation.paging.IPagingFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-internal class HeadlineArticlesViewModel(private val topHeadlinesUseCase: ITopHeadlinesUseCase) :
+internal class HeadlineArticlesViewModel(private val pagingFactory: IPagingFactory) :
     ViewModel() {
 
     private val _pagingArticle =
@@ -23,7 +23,7 @@ internal class HeadlineArticlesViewModel(private val topHeadlinesUseCase: ITopHe
 
     fun getTopHeadlines() {
         viewModelScope.launch(Dispatchers.IO) {
-            topHeadlinesUseCase.paginateData()
+            pagingFactory.paginateData()
                 .cachedIn(viewModelScope)
                 .collectLatest {
                     _pagingArticle.value = it

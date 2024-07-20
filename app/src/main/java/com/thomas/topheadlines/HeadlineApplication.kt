@@ -2,6 +2,7 @@ package com.thomas.topheadlines
 
 import android.app.Application
 import com.thomas.topheadlines.di.networkModule
+import com.thomas.topheadlines.di.pagingSourceModule
 import com.thomas.topheadlines.di.repositoryModule
 import com.thomas.topheadlines.di.useCaseModule
 import com.thomas.topheadlines.di.viewModelModule
@@ -15,7 +16,7 @@ class HeadlineApplication: Application() {
 
         startKoin {
             androidContext(this@HeadlineApplication)
-            modules(networkModule, viewModelModule, repositoryModule, useCaseModule)
+            modules(networkModule, pagingSourceModule, viewModelModule, repositoryModule, useCaseModule)
         }
     }
 

@@ -1,13 +1,14 @@
-package com.thomas.topheadlines.domain.pagingsource
+package com.thomas.topheadlines.presentation.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.thomas.topheadlines.data.model.TopHeadlineRequest
 import com.thomas.topheadlines.domain.model.SealedArticleResult
 import com.thomas.topheadlines.domain.model.SealedResult
+import com.thomas.topheadlines.domain.usecase.ITopHeadlinesUseCase
 import com.thomas.topheadlines.utils.Constant
 
-internal class TopHeadlinesPagingSource(private val dataSource: ITopHeadlinesDataSource) :
+internal class TopHeadlinesPagingSource(private val useCase: ITopHeadlinesUseCase) :
     PagingSource<Int, SealedArticleResult>() {
 
     override fun getRefreshKey(state: PagingState<Int, SealedArticleResult>): Int? {
@@ -20,7 +21,7 @@ internal class TopHeadlinesPagingSource(private val dataSource: ITopHeadlinesDat
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SealedArticleResult> {
         val position = params.key ?: STARTING_PAGE_INDEX
         return when (val fetchData =
-            dataSource.fetchData(TopHeadlineRequest(position, Constant.PAGE_SIZE))) {
+            useCase.fetchData(TopHeadlineRequest(position, Constant.PAGE_SIZE))) {
             is SealedResult.Success -> {
                 LoadResult.Page(
                     data = fetchData.data,
